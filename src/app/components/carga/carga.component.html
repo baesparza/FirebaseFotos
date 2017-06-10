@@ -5,6 +5,7 @@
     <h3>Seleccione Archivos</h3>
     <br>
     <div appNgDropFiles
+      [archivos]="archivos"
       class="drop-zone"
       (archivoSobre)="archivoSobreDropZone($event)"
       [ngClass]="{ 'file-over': estaSobreDropzone }">
@@ -36,10 +37,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
+        <tr *ngFor="let archivo of archivos">
+          <td>{{ archivo.nombreArchivo }}</td>
+          <td>{{ archivo.archivo.size /1024 /1024 | number:'.2'}} MB</td>
+          <td>
+            <div class="progress">
+              <div class="progress-bar progress-bar-striped" role="progressbar" 
+                [ngStyle]="{'width': archivo.progreso + '%'}" [ngClass]="{'progress-bar-animated': archivo.progreso }"></div>
+            </div>
+          </td>
         </tr>
       </tbody>
     </table>
