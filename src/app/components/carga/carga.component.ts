@@ -19,7 +19,7 @@ export class CargaComponent {
   constructor(public _cargaimagenesService: CargaimagenesService) { }
 
   archivoSobreDropZone(evento: boolean) {
-    console.log(evento);
+    // console.log(evento);
     this.estaSobreDropzone = evento;
   }
 
