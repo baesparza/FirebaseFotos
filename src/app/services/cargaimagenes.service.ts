@@ -26,4 +26,10 @@ export class CargaimagenesService {
 
   }
 
+  private guardarimagen (imagen: any) {
+
+    this._angularFireDatabase.list(`/${ this.Carpeta_Imagenes }`).push(imagen);
+
+  }
+
 }
