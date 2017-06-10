@@ -38,6 +38,7 @@ export class NgDropFilesDirective {
       return;
     }
     this._agregarArchivos(tranferencia.files);
+    this.archivoSobre.emit( false );
     this.entraySale(event);
   }
 
@@ -47,7 +48,16 @@ export class NgDropFilesDirective {
   }
 
   private _agregarArchivos(archivoLista: FileList) {
-    console.log(archivoLista);
+    // console.log(archivoLista);
+    // tslint:disable-next-line:forin
+    for (let propiedad in Object.getOwnPropertyNames(archivoLista)) {
+      let archTemp = archivoLista[propiedad];
+      if (this.archivoPuedeSerCargado(archTemp)) {
+        let nuevoArchivo = new FileItem(archTemp);
+        this.archivos.push(nuevoArchivo);
+      }
+    }
+    console.log(this.archivos);
   }
 
   private entraySale( event: any ) {
