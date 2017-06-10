@@ -5,11 +5,13 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { CargaComponent } from './components/carga/carga.component';
+import { FotosComponent } from './components/fotos/fotos.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CargaComponent
+    CargaComponent,
+    FotosComponent
   ],
   imports: [
     BrowserModule,
