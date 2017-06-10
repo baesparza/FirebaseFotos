@@ -12,7 +12,6 @@ export class CargaimagenesService {
   constructor(public _angularFireDatabase: AngularFireDatabase) { }
 
   listaUltimasImagenes (maxImg: number): FirebaseListObservable<any[]> {
-
     return this._angularFireDatabase.list(`/${ this.Carpeta_Imagenes }`, {
       query: {
         limitToLast: maxImg
@@ -21,15 +20,11 @@ export class CargaimagenesService {
   }
 
   uploadImagenes (archivos: FileItem[]) {
-
     console.log(archivos);
-
   }
 
   private guardarimagen (imagen: any) {
-
     this._angularFireDatabase.list(`/${ this.Carpeta_Imagenes }`).push(imagen);
-
   }
 
 }

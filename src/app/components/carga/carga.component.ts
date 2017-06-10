@@ -18,6 +18,11 @@ export class CargaComponent {
 
   constructor(public _cargaimagenesService: CargaimagenesService) { }
 
+  archivoSobreDropZone(evento: boolean) {
+    console.log(evento);
+    this.estaSobreDropzone = evento;
+  }
+
   cargarFirebase () {
     this.permiteCargar = false;
     this._cargaimagenesService.uploadImagenes(this.archivos);
