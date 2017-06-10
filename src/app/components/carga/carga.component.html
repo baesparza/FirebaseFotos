@@ -1,3 +1,44 @@
-<p>
-  carga works!
-</p>
+<div class="row">
+
+  <div class="col-md-4">
+
+    <h3>Seleccione Archivos</h3>
+    <br>
+    <div class="drop-zone">
+      <h4>Suelta los archivos aqui</h4>
+      <img src="/assets/img/drop-images.png" alt="drop-zone">
+
+    </div>
+  </div>
+  <div class="col-md-8">
+    <h3>Cargar Archivos</h3>
+    <br>
+
+    <button type="button" class="btn btn-success" 
+          (click)="cargarFirebase()"
+          [disabled]="archivos.length == 0 || !permiteCargar">
+          Cargar a firebase
+    </button>
+    <button type="button" class="btn btn-danger" 
+          (click)="limpiarArchivos()">
+          Limpiar Acrchivos
+    </button>
+
+    <table class="table" *ngIf="archivos.length > 0">
+      <thead class="thead-inverse">
+        <tr>
+          <th>Nombre</th>
+          <th>Tamaño</th>
+          <th>Progreso</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
