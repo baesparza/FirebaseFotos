@@ -13,11 +13,17 @@ export class CargaimagenesService {
 
   listaUltimasImagenes (maxImg: number): FirebaseListObservable<any[]> {
 
-    return this._angularFireDatabase.list(`${ this.Carpeta_Imagenes }`, {
+    return this._angularFireDatabase.list(`/${ this.Carpeta_Imagenes }`, {
       query: {
         limitToLast: maxImg
       }
     });
+  }
+
+  uploadImagenes (archivos: FileItem[]) {
+
+    console.log(archivos);
+
   }
 
 }
