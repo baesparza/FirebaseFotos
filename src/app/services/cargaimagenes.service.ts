@@ -20,7 +20,24 @@ export class CargaimagenesService {
   }
 
   uploadImagenes (archivos: FileItem[]) {
-    console.log(archivos);
+    console.log('cargando', archivos);
+    let storageRef = firebase.storage().ref();
+    // tslint:disable-next-line:forin
+    for (let item of archivos) {
+      item.estadoUpload = true;
+      let uploadTask: firebase.storage.UploadTask = storageRef
+        .child(`${ this.Carpeta_Imagenes }/${ item.nombreArchivo }`)
+        .put(item.archivo);
+      uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
+        (snapshot) => item.progreso = (snapshot.bytesTransferred / snapshot.totalBytes) * 100,
+        (error) => console.error('Error al subir', error),
+        () => {
+          item.url = uploadTask.snapshot.downloadURL;
+          item.estadoUpload = false;
+          this.guardarimagen({nombre: item.nombreArchivo, url: item.url});
+        }
+        );
+    }
   }
 
   private guardarimagen (imagen: any) {
