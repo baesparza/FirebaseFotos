@@ -1,3 +1,5 @@
-<p>
-  fotos works!
-</p>
+<div class="card-columns">
+  <div class="card" *ngFor="let imagen of images | async">
+    <img class="card-img img-fluid" [src]="imagen.url" [alt]="imagen.nombre">
+  </div>
+</div>
